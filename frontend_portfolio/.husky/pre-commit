@@ -1,7 +1,17 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo '🏗️👷 Styling, testing and building your project before committing'
+echo '🏗️👷 Styling, testing and pushing to git'
+
+
+echo '🏗️👷 Formating Prettier standards...'
+
+cd frontend_portfolio && npm run format-write ||
+(
+    echo '🤢🤮🤢🤮 Its FOKING RAW - Your styling looks disgusting. 🤢🤮🤢🤮
+            Prettier Check Failed. Run npm run format, add changes and try commit again.';
+    false;
+)
 
 # Check Prettier standards
 npm run format-check ||
@@ -9,6 +19,16 @@ npm run format-check ||
     echo '🤢🤮🤢🤮 Its FOKING RAW - Your styling looks disgusting. 🤢🤮🤢🤮
             Prettier Check Failed. Run npm run format, add changes and try commit again.';
     false;
+)
+
+
+echo '🏗️👷 Formating ESLint standards...'
+
+npm run lint-fix ||
+(
+        echo '😤🏀👋😤 Get that weak shit out of here! 😤🏀👋😤 
+                ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
+        false; 
 )
 
 # Check ESLint Standards
@@ -19,39 +39,8 @@ npm run lint-check ||
         false; 
 )
 
-# Check tsconfig standards
-# npm run check-types ||
-# (
-#     echo '🤡😂❌🤡 Failed Type check. 🤡😂❌🤡
-#             Are you seriously trying to write that? Make the changes required above.'
-#     false;
-# )
-
 # If everything passes... Now we can commit
-# echo '🤔🤔🤔🤔... Alright.... Code looks good to me... Trying to build now. 🤔🤔🤔🤔'
-echo '🤔🤔🤔🤔... Alright.... Code looks good to me... Trying to fix now. 🤔🤔🤔🤔'
-
-
-npm run format:write ||
-(
-        echo '😤🏀👋😤 Get that weak shit out of here! 😤🏀👋😤 
-                ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
-        false; 
-)
-
-npm run lint:fix ||
-(
-        echo '😤🏀👋😤 Get that weak shit out of here! 😤🏀👋😤 
-                ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
-        false; 
-)
-# npm run build ||
-# (
-#     echo '❌👷🔨❌ Better call Bob... Because your build failed ❌👷🔨❌
-#             Next build failed: View the errors above to see why. 
-#     '
-#     false;
-# )
+echo '🤔🤔🤔🤔... Alright.... Code looks good to me... Now you can push to git. 🤔🤔🤔🤔'
 
 # If everything passes... Now we can commit
 echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'
