@@ -45,9 +45,9 @@ function Footer() {
 
       <div className="app__footer-cards">
         <div className="app__footer-card">
-          <img src={images.email} alt="email" />
+          <img src={images.gmail} alt="email" />
           <a href="mailto:muhammadpulatov9595@gmail.com" className="p-text">
-            muhammadpulatov9595@gmail.com
+            muhammadpulatov@gmail.com
           </a>
         </div>
 
@@ -88,7 +88,7 @@ function Footer() {
               className="p-text"
               placeholder="Your Message"
               value={message}
-              name={message}
+              name="message"
               onChange={handleChangeInput}
             />
           </div>

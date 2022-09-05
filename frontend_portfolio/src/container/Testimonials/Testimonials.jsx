@@ -19,6 +19,15 @@ function Testimonials() {
   };
 
   useEffect(() => {
+    const interval = setInterval(() => {
+      handleClick(
+        currentIndex === 0 ? testimonials.length - 1 : currentIndex - 1,
+      );
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [handleClick]);
+
+  useEffect(() => {
     const query = '*[_type == "testimonials"]';
     const brandsQuery = '*[_type == "brands"]';
 
